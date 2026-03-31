@@ -34,3 +34,9 @@ dev-data/
 # AI planning and analysis files
 .claude/
 .planning/
+
+dist/
+*.AppImage
+*.yml
+*.yaml
+linux-unpacked/

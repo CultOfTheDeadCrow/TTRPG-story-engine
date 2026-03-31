@@ -48,7 +48,24 @@ export function applySession(
 
       let dbValue: string = update.new_value
       if (update.field === 'tags') {
-        try { JSON.parse(update.new_value) } catch { dbValue = JSON.stringify([update.new_value]) }
+        // The AI delivers tags as a comma-separated string (e.g. "Shadowrunner, Drake, Changeling").
+        // Split, trim, and merge with existing tags — deduplicating by value.
+        const existingTags: string[] = Array.isArray(oldValue) ? (oldValue as string[]) : []
+        const newTags: string[] = update.new_value
+          .split(',')
+          .map(t => t.trim())
+          .filter(t => t.length > 0)
+        const mergedTags = Array.from(new Set([...existingTags, ...newTags]))
+        dbValue = JSON.stringify(mergedTags)
+      } else if (update.field === 'description') {
+        // Append new intel to the existing description rather than replacing it.
+        const existingDesc = String(oldValue ?? '').trim()
+        const newDesc = update.new_value.trim()
+        if (existingDesc.length > 0 && newDesc.length > 0) {
+          dbValue = `${existingDesc}\n\n${newDesc}`
+        } else {
+          dbValue = newDesc || existingDesc
+        }
       }
 
       db.prepare(`UPDATE entities SET ${update.field} = ?, updated_at = ? WHERE id = ?`)
