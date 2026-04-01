@@ -21,7 +21,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Set C++20 flag (Linux — required for better-sqlite3 with Electron 35)
         if: runner.os == 'Linux'
