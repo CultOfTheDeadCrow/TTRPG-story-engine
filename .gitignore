@@ -39,4 +39,6 @@ dist/
 *.AppImage
 *.yml
 *.yaml
+!.github/**/*.yml
+!.github/**/*.yaml
 linux-unpacked/
