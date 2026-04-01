@@ -1,6 +1,6 @@
-# Shadowrun Story Engine
+# TTRPG Story Engine
 
-A local desktop GM tool for managing Shadowrun tabletop RPG campaigns with AI-powered story generation and session import.
+A local desktop GM tool for managing Shadowrun (or other) tabletop RPG campaigns with AI-powered story generation and session import.
 
 ---
 
