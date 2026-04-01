@@ -9,8 +9,7 @@
     "dev": "electron-vite dev",
     "build": "electron-vite build && electron-builder",
     "preview": "electron-vite preview",
-    "rebuild": "electron-rebuild -f -w better-sqlite3",
-    "postinstall": "electron-rebuild -f -w better-sqlite3"
+    "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39.0",
@@ -29,7 +28,6 @@
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {
-    "@electron/rebuild": "^3.6.0",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^20.14.9",
     "@types/react": "^18.3.3",
